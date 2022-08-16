@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="content-type" content="text/html; charset=gbk">
+<title>nixie clock</title>
+<style>    
+        html
+        {
+            width: 100%;
+            height: 100%;
+        }
+        
+        body
+        {
+            background: #000;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Raleway' , sans-serif;
+        }
+           
+        .window
+        {
+            width: 910px;
+            height: 300px;
+            background: #000;
+            margin-left: -250px;
+            left: 50%;
+            position: absolute;
+            background-image:url('bei.png');
+        }
+        
+        .pew
+        {
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: #111;
+            background: #000;
+            cursor: default;
+        }
+
+        a:link
+        {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:visited
+        {
+            color: #333;
+            text-decoration: none;
+        }
+
+
+    
+        img.margin{margin-left:110px;}
+
+    </style>
+
+</head>
+
+<body>
+
+<div  >
+<a href="index3.html">switch</a>
+<br>
+<a href="index22.html">Center-lock</a>
+
+</div>
+
+
+<div class="window noselect" style="top: 100px; left: 400px;">
+       <div class="pew"  >
+         <img src="0.png" alt="" />
+         <img src="0.png" alt="" />
+         <img src="0.png" class="margin"/>
+         <img src="0.png" alt="" />
+         <img src="0.png" class="margin"/>
+         <img src="0.png" alt="" />
+       </div>
+</div>
+
+
+<script src="clock.js"></script>
+<script src="jquery.js"></script>
+
+<script>
+        $("html").mousemove(function (event) {
+            mausx = event.pageX;
+            mausy = event.pageY;
+            winx = $(".window").offset().left;
+            winy = $(".window").offset().top;
+            if (clicked == "Nope.") {
+                difx = mausx - winx;
+                dify = mausy - winy;
+            }
+
+            var newx = event.pageX - difx - $(".window").css("marginLeft").replace('px', '');
+            var newy = event.pageY - dify - $(".window").css("marginTop").replace('px', '');
+            $(".window").css({ top: newy, left: newx });
+
+            $(".container").html("Mouse Cords: " + mausx + " , " + mausy + "<br />" + "Window Cords:" + winx + " , " + winy + "<br />Draggin'?: " + clicked + "<br />Difference: " + difx + " , " + dify + "");
+        });
+
+        $(".pew").mousedown(function (event) {
+            clicked = "Yeah.";
+        });
+
+        $("html").mouseup(function (event) {
+
+            clicked = "Nope.";
+        });
+
+
+    </script>
+
+
+</body></html>
